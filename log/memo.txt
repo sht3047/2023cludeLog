@@ -1,0 +1,522 @@
+#========#========#========#========#========#========#========#========#
+
+본 파일은 보기좋게 정리한 내용이 아닌 
+수업 중간중간 기록을 하는 메모장 파일이므로
+중복된 내용, 순서가 맞지 않는 내용이 있을 수 있음.
+어디까지나 놓치는 부분 또는 기억이 잘 나지않는 부분,
+PPT에 있는 내용 등을 메모해두는 용도.
+
+#========#========#========#========#========#========#========#========#
+
+항상 시작 전 Amazon의 지역(Local) 설정을 서울로 바꿀 것
+
+#========#========#========#========#========#========#========#========#
+
+	- Amazon Linux 사용
+	- t2.micro
+		프리계정 마이크로버전만 사용.
+		시간당 약 0.07달러
+	- 키 페어 생성
+		amikey001
+		amikey001ppk
+
+	네트워크와 서브넷은 복잡하고 지울때 번거롭기에 설정하지 않음.
+
+	# 일라스틱ip
+	# - 실제 아이피 구매.
+	#  	- 과금 있음.
+
+	방화벽 (보안 그룹)
+
+	SSH 사용.
+
+	스토리지 구성
+	Configure Storage
+
+	인스턴트 생성
+
+#========#========#========#========#========#========#
+
+	인스턴트 목록
+		인스턴트 상태가 대기 중(pending) 에서 실행 중(running)이 되면 실습 준비 완료.
+
+	Elastic IPs 항목이 비어야 완전히 삭제된 상태.
+
+	AWS Billing Dashboard
+	console.aws.amazon.com/cost-management/home#/dashboard
+	월간 코스트 비용을 산정하고 초과시 이메일로 알람을 전송.
+
+	Application and OS Images (Amazon Machine Image)
+		amazon linux 2023 ami 
+
+	Instance type 
+		t2.micro 
+
+	Create key pair
+		amisht0121ppk
+			RSA
+			.ppk
+
+	Network settings
+		
+		Allow SSH traffic from
+			Anywhere
+			My IP
+			
+	Configure storage Info
+		8GB
+
+
+
+
+	Security
+		Security Gruop
+			launch-wizard-1
+				inbound rule
+					Edit inbound rules
+						add rule
+							type SSH
+							source anywhere
+						add rule
+							type SSH
+							source MyIP
+						save rule
+	Instance summary
+		Public IPv4 address	
+			copy
+	putty
+		host name (or IP address)
+			paste ip
+		connection
+			Data
+				auto login username
+					ec2-user
+			SSH
+				Auth
+					Private key file for authentication: Browse
+					amisht0121ppk,ppk
+
+
+#========#========#========#========#========#========#========#========#
+2023 03 27
+4주차 월요일
+#========#========#========#========#========#========#========#========#
+	FileZilla, Subline Text Download
+
+#========#========#========#========#========#========#========#========#
+2023 03 28
+4주차 화요일
+#========#========#========#========#========#========#========#========#
+
+	new instance
+
+
+	Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type
+	Free tier eligible
+
+
+	chat gpt
+	create simple html code
+
+
+
+	리눅스 사용 시 apt-get이 아닌 yum 명령어 사용
+
+	sudo yum update -y
+	sudo yum install -y httpd 
+	sudo systemctl start httpd
+	sudo systemctl enable httpd
+	sudo cd /var/www/html
+	sudo echo "<h1>Hello webserver from  $(hostname -f)</h1>" >index.html
+
+
+
+	우분투 사용시 apt-get 사용
+
+	Linux webserver (데비안 Ubuntu)
+	$sudo apt-get update
+	$sudo apt-get install apache2
+	$cd /var/www/html  // LTS18.
+	LTS 20.04  (https://mumomu.tistory.com/121)
+	$sudo apt-get upgrade
+	$ sudo apt-get install apache2
+	$sudo apt-get upgrade
+
+	sudo passwd root  //root pw 설정
+
+
+	Associate Elastic IP address
+
+	IP 대여 서비스
+	Instance와 별개
+	IP를 수매하여 Instance의 주소로 고정시킴.
+
+
+	Amazon Machine Images (AMIs)
+		Image Create
+			amiImage10 
+
+#========#========#========#========#========#========#========#========#
+2023 04 03
+5주차 월요일
+#========#========#========#========#========#========#========#========#
+	Linux WebServer
+
+	Elastic IP addresses
+
+
+	commands
+
+	su
+	yum update -y
+	yum install -y httpd 
+	systemctl start httpd
+	systemctl enable httpd
+	cd /var/www/html
+	echo "<h1>Hello webserver from  $(hostname -f)</h1>" >index.html
+
+
+
+	파일질라 연결
+
+
+	sudo 
+
+
+
+
+	ami:아마존 머신 이미지s(amazon machine images) 
+
+	instance - Action
+	amiImage select
+
+
+	release Elastic IP - ip 제거
+
+#========#========#========#========#========#========#========#========#
+2023 04 04
+5주차 화요일
+#========#========#========#========#========#========#========#========#
+
+	Network&Security   Elastic IP  Allocate Ip  Associate add
+
+
+	Linux webserver (AMI) # putty에 적는 명령어
+		cat /ect/*release*   //linux version
+			sudo yum update –y  //method 2 use sudo
+			sudo yum install -y httpd 
+			sudo systemctl start httpd
+			sudo systemctl enable httpd
+			// cd /var/www/html
+			echo "<h1>Hello webserver from  $(hostname -f)</h1>" >index.html
+			cp index.html /var/www/html/.
+
+
+
+	ami 만들기
+
+	intance -> action -> image and templte -> create image
+
+	좌측 사이드바 Image -> AMIs
+		- name 변경 가능
+		- Status 가 pending 이면  Available 나올때까지 대기
+		- Launch instance from AMI
+			- Application and OS Images (Amazon Machine Image)
+			- My AMIs
+				- instance 처럼 설정
+			-
+		-
+
+
+	지우기
+
+	Instance - Instance State - Terminate instances
+	Image - AMIs - Action - Deregister AMI - Delete associated snapshots
+	Network & Security - Elastic IP - Action - Release Elastic IP addresses
+	Elastic Block Store - Snapshots - Action - Delete snapshots
+
+
+
+	account - Billing Dashboard
+	left sidebar - Bills - AWS estimated bill summary
+
+#========#========#========#========#
+Chap. AWS S3 & IAM
+#========#========#========#========#
+	AWS S3
+		클라우드 객체 스토리지.
+
+	S3 Stanard 사용.
+
+	S3 Access
+		- Bucket
+	S3 Permission/Security
+		- IAM policies
+
+	Aws Console
+		- Search S3
+		- Create Bucket
+			- General configuration
+				- Bucket name
+				# shtawsbucket0404
+
+			- Object Ownership
+				- ACLs disabled (recommended)
+
+			- Block Public Access settings for this bucket
+				- Block all public access
+
+				# 1번째, 2번째 체크박스
+				- Block public access to buckets and objects granted through new access control lists (ACLs)
+				- Block public access to buckets and objects granted through any access control lists (ACLs)
+				# 경고문구
+				- Turning off block all public access might result in this bucket and the objects within becoming public
+					- I acknowledge that the current settings might result in this bucket and the objects within becoming public.
+			-Bucket Versioning
+
+			-Default encryption
+		- Create bucket Button
+
+
+
+		# 왼쪽 사이드바에서 선택
+		- Buckets
+			# 생성한 Bucket 선택
+
+			# 파일 업로드, 업로드한 파일 확인, 공유 URL
+			Objects: 
+				# 업로드 할 파일 선택 후 업로드
+				- Upload
+					- Choose File for Upload
+				# 업로드한 파일 선택
+				- choose uploaded file
+					# 오픈을 누르면 자신만 확인 가능
+					- Open
+					# 지정한 시간동안 공유 가능한 URL을 생성
+					- Object actions
+						- Share with a presigned URL
+							- Set Timer
+							- Create presigned URL
+
+			# 권한 조정 - public
+			Permissions:
+				- Bucket policy - Edit
+					- Bucket ARN > arn:aws:s3:::newsht0404
+					- Policy generator
+						- Step 1: Select Policy Type
+							- Select Type of Policy : S3 Bucket Policy
+						- Step 2: Add Statement(s)
+							- Effect : allow 
+							- Principal : *
+							- AWS Service
+							- Actions : Get Object
+							- Amazon Resource Name (ARN) : arn:aws:s3:::newsht0404/*
+
+							- Add Statement
+						- Step 3: Generate Policy
+							- Generated JSON
+					- policy
+						- paste JSON
+			# 설정 후 Upload한 파일 주소 확인.
+
+
+		# Bucket 지우기
+		Delete:
+			Object - Delete - permanently delete - Delete Select
+			Buckets - Delete - (bucket name) - Delete Bucket
+			#Bucket안의 Object에 있는 모든 요소를 비워낸 후에 제거 가능
+
+#========#========#========#========#========#========#========#========#
+2023 04 10
+6주차 월요일
+#========#========#========#========#========#========#========#========#
+	Permissions
+		- Block public access (bucket settings) > Edit
+			> check disable
+			> save changed > confirm
+		- Bucket policy 
+			> Edit
+				> Policy generator
+					- Step 1: Select Policy Type
+						- Select Type of Policy
+							- S3 Bucket Policy
+					- Step 2: Add Statement(s)
+						- Effect : allow 
+						- Principal : *
+						- AWS Service
+						- Actions : Get Object
+						- Amazon Resource Name (ARN) : arn:aws:s3:::shtbucket0410
+
+					- Step 3: Generate Policy
+				- Policy
+					- Paste JSON
+				> Save changes
+
+	Error Log
+		- Execute Save changes
+			Error Message
+				Unknown Error
+					An unexpected error occurred.
+					API response
+						Action does not apply to any resource(s) in statement
+			Policy JSON
+				{
+					"Id": "Policy1681103197534",
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+						"Sid": "Stmt1681103194678",
+						"Action": [
+							"s3:GetObject"
+						],
+						"Effect": "Allow",
+						"Resource": "arn:aws:s3:::shtbucket0410",
+						"Principal": "*"
+						}
+					]
+				}
+
+#========#========#========#========#========#========#========#========#
+2023 04 11
+6주차 화요일
+#========#========#========#========#========#========#========#========#
+	-S3 Bucket Policies
+		JSON based policies
+
+	- Event notifications
+		> Create event notification
+			- Event name
+				> 
+			- Event types
+				- Object creation
+					> All object create events
+			- Destination
+				> SQS queue
+					- select queue (shtqueue0411)
+				◆ Top Menu Service
+					> Simple Queue Service
+						> Create Queue
+							- Access policy
+							
+							> Create queue
+						
+						- Select Queue
+							- ARN
+				
+			> Save changes
+				- Unknown Error
+					An unexpected error occurred.
+					API response
+					Unable to validate the following destination configurations
+				# need send message
+					◆ shtQueue0411
+						- ARN copy
+							- arn:aws:sqs:ap-northeast-2:566967328958:shtQueue0411
+						- Access policy (Permissions) > Edit 
+							- Access policy
+								> Generator
+									- Step 2 
+										- Action > Send Message
+										- ARN > arn:aws:sqs:ap-northeast-2:566967328958:shtQueue0411
+									> Add Statement
+									- Step 3 > Generate Policy
+										> copy 
+							-
+							> Save
+			
+			- SQS queue > shtQueue0411
+				> Send and receive messages
+					> Poll for messages
+						
+	- S3 Bucket
+		- Permission
+			- Bucket Policy
+				> Edit
+					> Generate Policy
+					※ ARN 입력 할 때 붙여넣기 후 /* 2글자 추가하기
+	
+	
+	◆ Delete
+		SQS - Queue
+			- shtQueue0411
+				> Send and receive messages
+					- Select message > Delete
+				> Delete confirm > Delete
+		Amazon S3 > Buckets 
+			> shtbucket0411
+				- Object Select > Delete
+					- permanently delete > Delete
+				- Select shtbucket0411 > Delete
+					- shtbucket0411 > Delete bucket
+	.
+
+
+
+
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+
+#========#========#========#========#========#========#========#========#
+2023 00 00
+0주차 0요일
+#========#========#========#========#========#========#========#========#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

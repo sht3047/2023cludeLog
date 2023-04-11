@@ -1,0 +1,43 @@
+
+issue:
+	-
+question: 
+	- 
+
+
+
+
+0328
+
+
+issue: 
+	- amazon linux 2 ami apt-get command not found
+
+question: 
+	- sudo yum update
+
+
+issue:
+	-
+question: 
+	- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

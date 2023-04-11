@@ -1,0 +1,20 @@
+AWS:
+    EC2:
+        Instance:
+            - 왼쪽 사이드 메뉴에서 Instance를 선택하여 목록으로 이동
+            - 우상단에서 주황색 버튼
+            - Create Instance:
+                - Application and OS Images (Amazon Machine Image)
+		            amazon linux 2023 ami 
+            	- Instance type 
+		            t2.micro 
+	            - Create key pair
+		            amisht0121ppk
+			            RSA
+			            .ppk
+                - Network settings
+                    Allow SSH traffic from
+                        Anywhere
+                        My IP
+                - Configure storage Info
+                    8GB
